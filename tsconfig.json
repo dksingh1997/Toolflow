@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@toolflow/types": ["apps/core/types"],
+      "@toolflow/registry": ["apps/core/registry"],
+      "@toolflow/resolver": ["apps/core/resolver"],
+      "@toolflow/runtime": ["apps/core/runtime"]
+    }
+  },
+  "include": ["packages", "apps"]
+}

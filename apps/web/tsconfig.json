@@ -1,0 +1,66 @@
+// {
+//   "extends": "../../tsconfig.json",
+//   "compilerOptions": {
+//     "module": "esnext",
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "allowJs": true,
+//     "noEmit": true,
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//       "baseUrl": "../..",
+//     "paths": {
+//       "@/core/*": ["apps/core/*"],
+//       "@/config/*": ["apps/config/*"],
+//       "@/providers/*": ["apps/providers/*"]
+//     },
+//     "resolveJsonModule": true,
+//     "isolatedModules": true
+//   },
+//   "include": [
+//     "next-env.d.ts",
+//     "**/*.ts",
+//     "**/*.tsx"
+//   ],
+//   "exclude": [
+//     "node_modules"
+//   ]
+// }
+{
+  "compilerOptions": {
+    "jsx": "preserve", // or "react-jsx" (React 17+)
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": ".", // if using paths like @/core
+    "paths": {
+      "@/*": [
+        "./*"
+      ] // required if using @/ imports
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "target": "ES2017"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

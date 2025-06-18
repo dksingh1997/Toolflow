@@ -1,20 +1,47 @@
-export const applyFieldSelection = (data: any, fieldMode: string, fieldOverrides?: string[]) => {
-  if (fieldMode === "all") return data;
-  if (fieldMode === "manual" && fieldOverrides) {
-    return Array.isArray(data)
-      ? data.map(item => pickFields(item, fieldOverrides))
-      : pickFields(data, fieldOverrides);
-  }
-  if (fieldMode === "ai") {
-    // TODO: Plug in AI field selector logic
-    return data; // default fallback
-  }
-  return data;
-};
+import { getFieldPicker } from "./fields";
 
-const pickFields = (obj: Record<string, any>, fields: string[]) => {
-  return fields.reduce((acc, key) => {
-    if (obj[key] !== undefined) acc[key] = obj[key];
-    return acc;
-  }, {} as Record<string, any>);
+export const applyFieldSelection = (
+  data: any,
+  fieldMode: string,
+  minimalFields?: string[],
+  toolId?: string
+) => {
+  if (fieldMode === "all") return data;
+
+  // console.log(data, fieldMode, minimalFields, toolId)
+
+  const pickFields = getFieldPicker(toolId || "");
+
+  if (fieldMode === "custom" || fieldMode === "minimal") {
+    // Check if this is a Gmail-like response
+    if (data?.data?.messages && Array.isArray(data.data.messages)) {
+      const processedMessages = data.data.messages.map((msg: any) =>
+        pickFields(msg, minimalFields)
+      );
+
+      return {
+        ...data,
+        data: {
+          ...data.data,
+          messages: processedMessages,
+        },
+      };
+    }
+
+    // Fallback if it's already an array or object
+    return Array.isArray(data)
+      ? data.map(item => pickFields(item, minimalFields))
+      : pickFields(data, minimalFields);
+  }
+
+  if (fieldMode === "ai") {
+    return data;
+  }
+
+  if (fieldMode === "ai") {
+    // TODO: AI-powered field selection
+    return data;
+  }
+
+  return data;
 };

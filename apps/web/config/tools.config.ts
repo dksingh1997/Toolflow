@@ -7,8 +7,8 @@ export const tools: ToolDefinition[] = [
     description: "Finds emails using Gmail via Composio integration",
     provider: "composio",
     providerFunction: "gmail.searchEmails",
-    fieldMode: "ai", // could also be 'manual' or 'all'
-    fieldOverrides: ["subject", "snippet", "from", "date"],
+    fieldMode: "minimal",
+    minimalFields: ["subject", "snippet", "from", "date"],
     auth: "oauth2"
   }
 ];

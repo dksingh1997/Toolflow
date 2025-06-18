@@ -9,5 +9,5 @@ export const executeToolById = async (toolId: string, input: any) => {
   const fn = resolveProviderFunction(tool);
   const rawResponse = await fn(input, tool);
 
-  return applyFieldSelection(rawResponse, tool.fieldMode, tool.fieldOverrides);
+  return applyFieldSelection(rawResponse, tool.fieldMode, tool.minimalFields, toolId);
 };

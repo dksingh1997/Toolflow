@@ -32,35 +32,7 @@ Toolflow is an **AI-native middleware layer** to connect APIs and tools to LLM a
 - 📦 Plug-n-play TypeScript packages for runtime, registry, and types.
 - ⚡ Works with existing frameworks (Langchain, Flowise, AutoGen, etc.)
 
----
-
-## 🧱 Architecture
-
-            +---------------------+
-            |     AI Agent        |
-            +---------------------+
-                     |
-                     | Tool Name + Action Name (e.g., Gmail.FindEmails)
-                     v
-            +---------------------+
-            |     Toolflow        |   <-- You are here
-            | (Registry + Runtime)|
-            +---------------------+
-                     |
-         +-----------+-----------+
-         |                       |
-  +-------------+       +----------------+
-  | Tool Config |       |    Executor    |
-  | (Metadata)  |       |  (Calls API)   |
-  +-------------+       +----------------+
-         |                       |
-         +-----------+-----------+
-                     v
-          +----------------------+
-          | External API (Gmail) |
-          +----------------------+
-
----
+-------------- 
 
 ## 🧪 Example Use Case
 
@@ -88,11 +60,9 @@ Filtered response :
 }
 
 -------
-git clone https://github.com/dksingh1997/Toolflow.git
-cd Toolflow
-npm install
-npm run dev
-  ├── registry/      → Tool definitions
-  └── runtime/       → Core execution logic
+- git clone https://github.com/dksingh1997/Toolflow.git
+- cd Toolflow
+- npm install
+- npm run dev
 
 

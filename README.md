@@ -66,19 +66,25 @@ Toolflow is an **AI-native middleware layer** to connect APIs and tools to LLM a
 
 ### Tool: `Gmail.FindEmails`
 
-```ts
-// Tool definition
+Filtered response : 
+
 {
-  name: "Gmail.FindEmails",
-  description: "Fetches last 10 emails from Gmail inbox",
-  parameters: {
-    query: "string"
+  "data": {
+    "messages": [
+      {
+        "from": "Dheeraj Kumar",
+        "subject": "Repo check",
+        "snippet": "Hi Dheeraj, Does this repo makes sense ?",
+        "date": "Tue, 17 Jun 2025 12:01:00 +0200"
+      }
+    ],
+    "nextPageToken": "16428802254119354251",
+    "resultSizeEstimate": 201
   },
-  mode: "light", // or "ai-filter", "custom"
-  handler: async (input) => {
-    const emails = await callGmailAPI(input.query)
-    return emails.map(({ from, subject, snippet }) => ({ from, subject, snippet }))
-  }
+  "error": null,
+  "successfull": true,
+  "successful": true,
+  "logId": "log_3XvoX1kpxPM6"
 }
 
 -------

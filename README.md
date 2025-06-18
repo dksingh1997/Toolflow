@@ -92,14 +92,6 @@ git clone https://github.com/dksingh1997/Toolflow.git
 cd Toolflow
 npm install
 npm run dev
-
-### Package Overview
-
-apps/
-  └── web/           → Next.js frontend + API handlers
-
-packages/
-  ├── types/         → Shared TypeScript types
   ├── registry/      → Tool definitions
   └── runtime/       → Core execution logic
 

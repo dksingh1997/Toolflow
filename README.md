@@ -2,8 +2,6 @@
 
 **AI-Native Tool Calling Framework** — Build intelligent agents that interact with tools via natural language, with minimal context bloat and full developer control.
 
-![Toolflow Banner](https://raw.githubusercontent.com/dksingh1997/Toolflow/main/assets/toolflow-banner.png) <!-- optional if you design a logo later -->
-
 ---
 
 ## ⚠️ The Problem
@@ -37,4 +35,66 @@ Toolflow is an **AI-native middleware layer** to connect APIs and tools to LLM a
 ---
 
 ## 🧱 Architecture
+
+            +---------------------+
+            |     AI Agent        |
+            +---------------------+
+                     |
+                     | Tool Name + Action Name (e.g., Gmail.FindEmails)
+                     v
+            +---------------------+
+            |     Toolflow        |   <-- You are here
+            | (Registry + Runtime)|
+            +---------------------+
+                     |
+         +-----------+-----------+
+         |                       |
+  +-------------+       +----------------+
+  | Tool Config |       |    Executor    |
+  | (Metadata)  |       |  (Calls API)   |
+  +-------------+       +----------------+
+         |                       |
+         +-----------+-----------+
+                     v
+          +----------------------+
+          | External API (Gmail) |
+          +----------------------+
+
+---
+
+## 🧪 Example Use Case
+
+### Tool: `Gmail.FindEmails`
+
+```ts
+// Tool definition
+{
+  name: "Gmail.FindEmails",
+  description: "Fetches last 10 emails from Gmail inbox",
+  parameters: {
+    query: "string"
+  },
+  mode: "light", // or "ai-filter", "custom"
+  handler: async (input) => {
+    const emails = await callGmailAPI(input.query)
+    return emails.map(({ from, subject, snippet }) => ({ from, subject, snippet }))
+  }
+}
+
+-------
+git clone https://github.com/dksingh1997/Toolflow.git
+cd Toolflow
+npm install
+npm run dev
+
+### Package Overview
+
+apps/
+  └── web/           → Next.js frontend + API handlers
+
+packages/
+  ├── types/         → Shared TypeScript types
+  ├── registry/      → Tool definitions
+  └── runtime/       → Core execution logic
+
 
